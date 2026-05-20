@@ -38,8 +38,7 @@ export const services = [
     slug: "artificial-turf",
     title: "Artificial Turf",
     blurb: "Showroom-grade turf with photo-real blades, year-round perfect.",
-    image:
-      "https://images.unsplash.com/photo-1592420114407-9c2d34cf18c6?auto=format&fit=crop&w=1600&q=80",
+    image: "/before-after/project-01/after.jpg",
     tag: "Low maintenance",
   },
   {

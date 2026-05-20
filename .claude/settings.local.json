@@ -14,7 +14,10 @@
       "PowerShell(npx next build 2>&1 | Select-Object -Last 30)",
       "PowerShell(Get-ChildItem -Path .. -Force | Select-Object Name, Mode | Format-Table -AutoSize; \"---\"; Get-ChildItem -Force | Where-Object {$_.Name -in '.git', '.vercel', '.next'} | Select-Object Name, Mode)",
       "Bash(git ls-tree *)",
-      "Bash(git fetch *)"
+      "Bash(git fetch *)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"https://images.unsplash.com/photo-1592420114407-9c2d34cf18c6?auto=format&fit=crop&w=400&q=80\" -Method Head -UseBasicParsing -TimeoutSec 10; \"Status: $\\($r.StatusCode\\)\" } catch { \"ERROR: $\\($_.Exception.Message\\)\" })",
+      "WebFetch(domain:www.pexels.com)",
+      "Bash(npm run *)"
     ]
   }
 }
