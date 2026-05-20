@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npm install *)",
+      "PowerShell(npx next build 2>&1 | Select-Object -Last 80)",
+      "PowerShell(npx next build 2>&1 | Select-Object -Last 60)",
+      "PowerShell(npx next build 2>&1 | Select-Object -Last 40)",
+      "PowerShell(npx next build 2>&1 | Select-Object -Last 50)",
+      "PowerShell(npm run *)",
+      "WebSearch",
+      "WebFetch(domain:unsplash.com)",
+      "PowerShell(Remove-Item *)",
+      "PowerShell(npm uninstall *)",
+      "PowerShell(npx next build 2>&1 | Select-Object -Last 30)"
+    ]
+  }
+}
