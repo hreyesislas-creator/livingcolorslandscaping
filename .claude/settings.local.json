@@ -11,7 +11,10 @@
       "WebFetch(domain:unsplash.com)",
       "PowerShell(Remove-Item *)",
       "PowerShell(npm uninstall *)",
-      "PowerShell(npx next build 2>&1 | Select-Object -Last 30)"
+      "PowerShell(npx next build 2>&1 | Select-Object -Last 30)",
+      "PowerShell(Get-ChildItem -Path .. -Force | Select-Object Name, Mode | Format-Table -AutoSize; \"---\"; Get-ChildItem -Force | Where-Object {$_.Name -in '.git', '.vercel', '.next'} | Select-Object Name, Mode)",
+      "Bash(git ls-tree *)",
+      "Bash(git fetch *)"
     ]
   }
 }
