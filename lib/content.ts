@@ -111,8 +111,8 @@ export const beforeAfter: TransformationProject[] = [
       "Architectural lighting",
       "Smart irrigation",
     ],
-    before: "/before-after/project-01/before.jpg",
-    after: "/before-after/project-01/after.jpg",
+    before: "/images/before-after/project-01/before.jpg",
+    after: "/images/before-after/project-01/after.jpg",
   },
   {
     slug: "project-02",
@@ -124,8 +124,8 @@ export const beforeAfter: TransformationProject[] = [
       "Path lighting",
       "Modern entry pavers",
     ],
-    before: "/before-after/project-02/before.jpg",
-    after: "/before-after/project-02/after.jpg",
+    before: "/images/before-after/project-02/before.jpg",
+    after: "/images/before-after/project-02/after.jpg",
   },
   {
     slug: "project-03",
@@ -137,8 +137,8 @@ export const beforeAfter: TransformationProject[] = [
       "Fire feature",
       "Designer turf lounge",
     ],
-    before: "/before-after/project-03/before.jpg",
-    after: "/before-after/project-03/after.jpg",
+    before: "/images/before-after/project-03/before.jpg",
+    after: "/images/before-after/project-03/after.jpg",
   },
 ];
 
