@@ -46,3 +46,55 @@ export function getCitiesBySlugs(slugs: string[]): CityContent[] {
     .map((slug) => getCity(slug))
     .filter((c): c is CityContent => Boolean(c));
 }
+
+export interface CityRegion {
+  name: string;
+  blurb: string;
+  citySlugs: string[];
+}
+
+/** Cities grouped by real geographic region for the Areas We Serve hub. */
+export const cityRegions: CityRegion[] = [
+  {
+    name: "The Westside",
+    blurb:
+      "Estate design and privacy landscaping from the Beverly Hills flats to the canyons of Bel Air and Brentwood.",
+    citySlugs: [
+      "beverly-hills",
+      "bel-air",
+      "brentwood",
+      "pacific-palisades",
+      "santa-monica",
+    ],
+  },
+  {
+    name: "Coast & Beach Cities",
+    blurb:
+      "Salt-air-tolerant planting, wind exposure and ocean-view framing along the coast.",
+    citySlugs: ["malibu", "manhattan-beach"],
+  },
+  {
+    name: "Palos Verdes Peninsula",
+    blurb:
+      "Bluff-top gardens and slope-stable hardscape with sweeping Pacific views.",
+    citySlugs: ["palos-verdes-estates", "rancho-palos-verdes"],
+  },
+  {
+    name: "Conejo Valley & the Hills",
+    blurb:
+      "Fire-wise, HOA-compliant estate landscapes across the oak-studded hills and gated enclaves.",
+    citySlugs: [
+      "calabasas",
+      "hidden-hills",
+      "thousand-oaks",
+      "westlake-village",
+    ],
+  },
+  {
+    name: "San Gabriel Valley",
+    blurb:
+      "Heritage-tree stewardship and historic-estate gardens beneath the San Gabriel Mountains.",
+    citySlugs: ["pasadena", "san-marino"],
+  },
+];
+

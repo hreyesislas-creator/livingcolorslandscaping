@@ -7,7 +7,7 @@ export function Footer() {
     <footer className="relative border-t border-white/5 bg-ink-950">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-moss-500/40 to-transparent" />
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr_1fr]">
           <div className="max-w-sm">
             <Link href="/" className="flex items-center gap-2.5">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-moss-500 to-moss-700">
@@ -67,6 +67,19 @@ export function Footer() {
               <li><Link href="/service-areas/malibu" className="hover:text-cream-50">Malibu</Link></li>
               <li><Link href="/service-areas/pasadena" className="hover:text-cream-50">Pasadena</Link></li>
               <li><Link href="/service-areas" className="hover:text-cream-50">All areas →</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-moss-300/80">
+              Explore
+            </p>
+            <ul className="mt-5 space-y-3 text-sm text-cream-50/70">
+              <li><Link href="/project-types" className="hover:text-cream-50">Project Types</Link></li>
+              <li><Link href="/inspiration-gallery" className="hover:text-cream-50">Inspiration Gallery</Link></li>
+              <li><Link href="/luxury-landscaping-los-angeles" className="hover:text-cream-50">Luxury Landscaping LA</Link></li>
+              <li><Link href="/why-living-colors" className="hover:text-cream-50">Why Living Colors</Link></li>
+              <li><Link href="/quote" className="hover:text-cream-50">Smart Quote</Link></li>
             </ul>
           </div>
 

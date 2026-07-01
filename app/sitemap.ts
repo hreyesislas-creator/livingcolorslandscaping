@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/seo";
 import { services } from "@/lib/services";
 import { cities } from "@/lib/cities";
+import { projectTypes } from "@/lib/project-types";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -20,9 +21,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     entry("/", 1, "weekly"),
     entry("/services", 0.9, "monthly"),
+    entry("/project-types", 0.9, "monthly"),
     entry("/service-areas", 0.8, "monthly"),
+    entry("/luxury-landscaping-los-angeles", 0.8, "monthly"),
+    entry("/inspiration-gallery", 0.7, "monthly"),
+    entry("/why-living-colors", 0.7, "monthly"),
     entry("/quote", 0.6, "monthly"),
     ...services.map((s) => entry(`/services/${s.slug}`, 0.8, "monthly")),
+    ...projectTypes.map((p) => entry(`/project-types/${p.slug}`, 0.7, "monthly")),
     ...cities.map((c) => entry(`/service-areas/${c.slug}`, 0.7, "monthly")),
   ];
 }

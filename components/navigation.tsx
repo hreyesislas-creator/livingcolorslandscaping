@@ -9,10 +9,10 @@ import { brand } from "@/lib/content";
 
 const links = [
   { href: "/services", label: "Services" },
-  { href: "/service-areas", label: "Areas Served" },
-  { href: "/#work", label: "Work" },
-  { href: "/#process", label: "Process" },
-  { href: "/#faq", label: "FAQ" },
+  { href: "/project-types", label: "Project Types" },
+  { href: "/service-areas", label: "Areas" },
+  { href: "/inspiration-gallery", label: "Gallery" },
+  { href: "/why-living-colors", label: "Why Us" },
 ];
 
 export function Navigation() {

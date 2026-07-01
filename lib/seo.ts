@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getAggregateRating } from "./reviews";
 
 /**
  * Central SEO configuration + JSON-LD builders.
@@ -127,6 +128,7 @@ export function organizationSchema() {
 }
 
 export function localBusinessSchema() {
+  const rating = getAggregateRating();
   return {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "GeneralContractor"],
@@ -148,6 +150,16 @@ export function localBusinessSchema() {
       addressLocality: "Los Angeles",
       addressCountry: "US",
     },
+    // Emitted only once real reviews exist in lib/reviews.ts (never fabricated).
+    ...(rating
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: rating.ratingValue,
+            reviewCount: rating.reviewCount,
+          },
+        }
+      : {}),
     parentOrganization: { "@id": ORG_ID },
   };
 }

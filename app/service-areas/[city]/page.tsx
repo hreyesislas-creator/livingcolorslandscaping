@@ -19,6 +19,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 import { PageFaq } from "@/components/seo/page-faq";
 import { QuoteCta } from "@/components/seo/quote-cta";
+import { ExploreBand } from "@/components/seo/explore-band";
 
 export function generateStaticParams() {
   return cities.map((c) => ({ city: c.slug }));
@@ -224,6 +225,16 @@ export default async function CityPage({
             Explore all services
             <ArrowUpRight className="h-4 w-4" />
           </Link>
+        </div>
+      </section>
+
+      {/* Explore more (cross-linking) */}
+      <section className="relative bg-ink-950 py-14 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <h2 className="font-display mb-8 text-2xl font-light tracking-[-0.02em] text-cream-50 sm:text-3xl">
+            Explore more in {city.name}
+          </h2>
+          <ExploreBand />
         </div>
       </section>
 
