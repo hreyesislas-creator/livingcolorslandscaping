@@ -30,71 +30,63 @@ export const services = [
     slug: "landscape-design",
     title: "Landscape Design",
     blurb: "Bespoke outdoor environments engineered around how you live.",
-    image:
-      "https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/services/landscape-design.jpg",
     tag: "Signature",
   },
   {
     slug: "artificial-turf",
     title: "Artificial Turf",
     blurb: "Showroom-grade turf with photo-real blades, year-round perfect.",
-    image: "/before-after/project-01/after.jpg",
+    image: "/images/services/artificial-turf.jpg",
     tag: "Low maintenance",
   },
   {
     slug: "irrigation",
     title: "Smart Irrigation",
     blurb: "Weather-aware systems that cut water bills up to 50%.",
-    image:
-      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/services/smart-irrigation.jpg",
     tag: "Efficient",
   },
   {
     slug: "outdoor-lighting",
     title: "Outdoor Lighting",
     blurb: "Architectural lighting that makes your home glow after sunset.",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/services/outdoor-lighting.jpg",
     tag: "Cinematic",
   },
   {
     slug: "hardscape",
     title: "Hardscape",
     blurb: "Walls, fire features and structural elements built to last decades.",
-    image:
-      "https://images.unsplash.com/photo-1605146768851-eda79da39897?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/services/hardscape.jpg",
     tag: "Architectural",
   },
   {
     slug: "pavers",
     title: "Pavers",
     blurb: "Designer driveways, patios and walkways with flawless installs.",
-    image:
-      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/services/pavers.jpg",
     tag: "Premium",
   },
   {
     slug: "maintenance",
     title: "Maintenance",
     blurb: "White-glove monthly care that keeps your property pristine.",
-    image:
-      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/services/maintenance.jpg",
     tag: "Recurring",
   },
   {
     slug: "outdoor-living",
     title: "Outdoor Living",
     blurb: "Pergolas, kitchens, fire features, lounges — rooms without walls.",
-    image:
-      "https://images.unsplash.com/photo-1542621334-a254cf47733d?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/services/outdoor-living.jpg",
     tag: "Lifestyle",
   },
   {
     slug: "custom",
     title: "Custom Projects",
     blurb: "Putting greens, water features, pools surrounds — your wildest ideas, built.",
-    image:
-      "https://images.unsplash.com/photo-1551524559-8af4e6624178?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/services/custom-projects.jpg",
     tag: "Signature",
   },
 ] as const;
@@ -155,32 +147,28 @@ export const process = [
     step: "01",
     title: "Project Discovery",
     body: "Share your vision through our guided intake. A senior specialist personally reviews every detail.",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/process/step-01.jpg",
     duration: "Day 0 – 1",
   },
   {
     step: "02",
     title: "Design & Planning",
     body: "On-site walkthrough, precise measurements, material selection and a tailored plan with transparent investment.",
-    image:
-      "https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/process/step-02.jpg",
     duration: "Week 1 – 2",
   },
   {
     step: "03",
     title: "Build & Installation",
     body: "Our crews execute with daily progress updates, photo reports and a meticulously clean job site every night.",
-    image:
-      "https://images.unsplash.com/photo-1605146768851-eda79da39897?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/process/step-03.jpg",
     duration: "Week 2 – 6",
   },
   {
     step: "04",
     title: "Final Transformation",
     body: "Walkthrough, professional photography, 10-year workmanship warranty and a maintenance plan if you want it.",
-    image:
-      "https://images.unsplash.com/photo-1551524559-8af4e6624178?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/process/step-04.jpg",
     duration: "Reveal day",
   },
 ];

@@ -57,7 +57,7 @@ export function Areas() {
             className="relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/8"
           >
             <Image
-              src="https://images.unsplash.com/photo-1551524559-8af4e6624178?auto=format&fit=crop&w=1400&q=85"
+              src="/images/areas/areas.jpg"
               alt="Premium landscape project at dusk"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"

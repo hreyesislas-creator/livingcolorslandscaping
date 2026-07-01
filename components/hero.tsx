@@ -28,7 +28,7 @@ export function Hero() {
         className="absolute inset-0"
       >
         <Image
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2400&q=85"
+          src="/images/hero/hero.jpg"
           alt="Luxury landscaped estate at dusk"
           fill
           priority
