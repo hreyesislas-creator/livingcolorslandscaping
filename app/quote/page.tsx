@@ -19,6 +19,9 @@ export default function QuotePage() {
           { name: "Smart Quote", path: "/quote" },
         ])}
       />
+      <h1 className="sr-only">
+        Start Your Smart Quote — Living Colors Landscape, Los Angeles
+      </h1>
       <div className="pt-16">
         <QuoteSection />
       </div>

@@ -2,7 +2,7 @@ export const brand = {
   name: "Living Colors Landscape",
   tagline: "Premium outdoor transformations.",
   phone: "(323) 854-5237",
-  email: "hello@livingcolorslandscape.com",
+  email: "hello@livingcolorlandscapeinc.com",
   cities: [
     "Beverly Hills",
     "Bel Air",
