@@ -740,7 +740,7 @@ function ContactForm({
         type="tel"
         value={value.phone}
         onChange={(v) => set("phone", v)}
-        placeholder="(602) 555-0188"
+        placeholder="(323) 854-5237"
       />
       <Field
         icon={MapPin}
