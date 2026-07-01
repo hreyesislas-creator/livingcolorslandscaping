@@ -216,11 +216,27 @@ const realStepIndices = steps
   .map((s, i) => (s.type === "qualification" ? -1 : i))
   .filter((i) => i >= 0);
 
+// Map choice option ids -> human-readable labels for the lead payload.
+const choiceLabels: Record<string, Record<string, string>> = {};
+for (const s of steps) {
+  if (s.type === "choice") {
+    choiceLabels[s.key] = Object.fromEntries(
+      s.options.map((o) => [o.id, o.label]),
+    );
+  }
+}
+const labelsFor = (key: string, ids: string[]) =>
+  ids.map((id) => choiceLabels[key]?.[id] ?? id);
+
+// Keep total uploaded bytes under the serverless request-body ceiling.
+const MAX_UPLOAD_TOTAL = 3.5 * 1024 * 1024;
+
 export function QuoteWizard() {
   const [stepIdx, setStepIdx] = useState(0);
   const [answers, setAnswers] = useState<Answers>(initialAnswers);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [direction, setDirection] = useState(1);
   const [transition, setTransition] = useState<string[] | null>(null);
 
@@ -253,9 +269,65 @@ export function QuoteWizard() {
 
   const submit = async () => {
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1400));
-    setSubmitting(false);
-    setSubmitted(true);
+    setError(null);
+    try {
+      // Select photos that fit within the upload budget; note any omitted.
+      const included: File[] = [];
+      const omittedPhotos: string[] = [];
+      let total = 0;
+      for (const f of answers.photos) {
+        if (total + f.size <= MAX_UPLOAD_TOTAL) {
+          included.push(f);
+          total += f.size;
+        } else {
+          omittedPhotos.push(f.name);
+        }
+      }
+
+      const lead = {
+        contact: answers.contact,
+        summary: {
+          projectType: labelsFor("projectType", answers.projectType),
+          propertyType: labelsFor("propertyType", answers.propertyType).join(", "),
+          priorities: labelsFor("priorities", answers.priorities),
+          timeline: labelsFor("timeline", answers.timeline).join(", "),
+          budget: labelsFor("budget", answers.budget).join(", "),
+        },
+        steps: steps
+          .filter((s) => s.type === "choice")
+          .map((s) => ({
+            question: (s as Extract<Step, { type: "choice" }>).question,
+            answer:
+              labelsFor(
+                s.key,
+                (answers[s.key as keyof Answers] as string[]) ?? [],
+              ).join(", ") || "—",
+          })),
+        photoCount: included.length,
+        omittedPhotos,
+      };
+
+      const fd = new FormData();
+      fd.append("lead", JSON.stringify(lead));
+      included.forEach((f, i) => fd.append(`photo${i}`, f, f.name));
+
+      const res = await fetch("/api/quote", { method: "POST", body: fd });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        throw new Error(
+          data.error || "We couldn't send your request. Please try again.",
+        );
+      }
+      setSubmitted(true);
+    } catch (e) {
+      setError(
+        e instanceof Error
+          ? e.message
+          : "We couldn't send your request. Please try again.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const reset = () => {
@@ -362,7 +434,23 @@ export function QuoteWizard() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-10 flex items-center justify-between gap-3 border-t border-white/5 pt-6">
+        {error && (
+          <div
+            role="alert"
+            className="mt-6 flex items-start gap-3 rounded-2xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-200"
+          >
+            <X className="mt-0.5 h-4 w-4 shrink-0" />
+            <span>
+              {error} If it keeps happening, call us at{" "}
+              <a href="tel:+13238545237" className="underline underline-offset-2">
+                (323) 854-5237
+              </a>
+              .
+            </span>
+          </div>
+        )}
+
+        <div className="mt-6 flex items-center justify-between gap-3 border-t border-white/5 pt-6">
           <button
             type="button"
             onClick={goBack}
