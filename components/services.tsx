@@ -6,6 +6,10 @@ import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "./section-heading";
 import { services } from "@/lib/content";
 
+// Homepage cards use the content.ts catalog; map its slug to the SEO detail route.
+const detailSlug = (slug: string) =>
+  slug === "custom" ? "landscape-construction" : slug;
+
 export function Services() {
   return (
     <section id="services" className="relative bg-ink-950 py-24 sm:py-32">
@@ -35,7 +39,7 @@ export function Services() {
           {services.map((s, i) => (
             <motion.a
               key={s.slug}
-              href="#quote"
+              href={`/services/${detailSlug(s.slug)}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}

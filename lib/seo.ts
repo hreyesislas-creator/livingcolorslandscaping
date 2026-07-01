@@ -1,0 +1,200 @@
+import type { Metadata } from "next";
+
+/**
+ * Central SEO configuration + JSON-LD builders.
+ *
+ * The canonical base URL is environment-driven so the same code serves the
+ * Vercel preview domain today and a custom domain at launch. Set
+ * NEXT_PUBLIC_SITE_URL (no trailing slash) in the Vercel project to switch.
+ */
+export const siteConfig = {
+  name: "Living Colors Landscape",
+  shortName: "Living Colors",
+  legalName: "Living Colors Landscape",
+  url: (
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    "https://livingcolorslandscaping.vercel.app"
+  ).replace(/\/$/, ""),
+  description:
+    "Premium landscape design, build and maintenance for the most discerning homes across Greater Los Angeles.",
+  phone: "(323) 854-5237",
+  phoneHref: "tel:+13238545237",
+  email: "hello@livingcolorslandscape.com",
+  region: "Los Angeles",
+  areaServed: "Greater Los Angeles",
+  // Real, existing asset used for social sharing until a dedicated OG image ships.
+  ogImage: "/images/hero/hero.jpg",
+  // The 15 Phase 1 communities — used for site-wide LocalBusiness areaServed.
+  areaServedCities: [
+    "Beverly Hills",
+    "Bel Air",
+    "Brentwood",
+    "Pacific Palisades",
+    "Malibu",
+    "Santa Monica",
+    "Manhattan Beach",
+    "Palos Verdes Estates",
+    "Rancho Palos Verdes",
+    "Calabasas",
+    "Hidden Hills",
+    "Thousand Oaks",
+    "Westlake Village",
+    "Pasadena",
+    "San Marino",
+  ],
+} as const;
+
+/** Resolve a path or absolute URL to a fully-qualified absolute URL. */
+export function absoluteUrl(path = "/"): string {
+  if (path.startsWith("http")) return path;
+  return `${siteConfig.url}${path.startsWith("/") ? "" : "/"}${path}`;
+}
+
+interface BuildMetadataArgs {
+  title: string;
+  description: string;
+  /** Path only, e.g. "/services/pavers". Used for canonical + OG url. */
+  path: string;
+  image?: string;
+  /** Set true for utility pages that should not be indexed. */
+  noIndex?: boolean;
+}
+
+/** Shared metadata factory so every page ships consistent canonical/OG/Twitter. */
+export function buildMetadata({
+  title,
+  description,
+  path,
+  image,
+  noIndex,
+}: BuildMetadataArgs): Metadata {
+  const canonical = absoluteUrl(path);
+  const ogImage = absoluteUrl(image ?? siteConfig.ogImage);
+
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    robots: noIndex ? { index: false, follow: true } : undefined,
+    openGraph: {
+      type: "website",
+      url: canonical,
+      siteName: siteConfig.name,
+      title,
+      description,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
+
+/* ------------------------------------------------------------------ */
+/*  JSON-LD builders                                                   */
+/* ------------------------------------------------------------------ */
+
+const ORG_ID = `${siteConfig.url}/#organization`;
+
+export function organizationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": ORG_ID,
+    name: siteConfig.name,
+    legalName: siteConfig.legalName,
+    url: siteConfig.url,
+    email: siteConfig.email,
+    telephone: siteConfig.phone,
+    image: absoluteUrl(siteConfig.ogImage),
+    description: siteConfig.description,
+    areaServed: siteConfig.areaServedCities.map((c) => ({
+      "@type": "City",
+      name: c,
+    })),
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: siteConfig.phone,
+      contactType: "sales",
+      email: siteConfig.email,
+      areaServed: "US-CA",
+      availableLanguage: ["English", "Spanish"],
+    },
+  };
+}
+
+export function localBusinessSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "GeneralContractor"],
+    "@id": `${siteConfig.url}/#localbusiness`,
+    name: siteConfig.name,
+    url: siteConfig.url,
+    telephone: siteConfig.phone,
+    email: siteConfig.email,
+    image: absoluteUrl(siteConfig.ogImage),
+    description: siteConfig.description,
+    priceRange: "$$$",
+    areaServed: siteConfig.areaServedCities.map((c) => ({
+      "@type": "City",
+      name: c,
+    })),
+    address: {
+      "@type": "PostalAddress",
+      addressRegion: "CA",
+      addressLocality: "Los Angeles",
+      addressCountry: "US",
+    },
+    parentOrganization: { "@id": ORG_ID },
+  };
+}
+
+export function serviceSchema(input: {
+  name: string;
+  description: string;
+  path: string;
+  image?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: input.name,
+    serviceType: input.name,
+    description: input.description,
+    url: absoluteUrl(input.path),
+    image: input.image ? absoluteUrl(input.image) : undefined,
+    provider: { "@id": ORG_ID, "@type": "Organization", name: siteConfig.name },
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: "Greater Los Angeles",
+    },
+  };
+}
+
+export function faqPageSchema(faqs: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+}
+
+export function breadcrumbSchema(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: absoluteUrl(item.path),
+    })),
+  };
+}

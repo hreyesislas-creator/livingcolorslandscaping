@@ -11,7 +11,7 @@ export function StatsBand() {
           <div>
             <p className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em] text-moss-300/90">
               <span className="inline-block h-px w-6 bg-moss-400/60" />
-              Trusted across the Valley
+              Trusted across Los Angeles
             </p>
             <h2 className="font-display mt-4 text-balance text-4xl font-light leading-[1.05] tracking-[-0.02em] text-cream-50 sm:text-5xl lg:text-[56px]">
               Premium results, <span className="text-gradient-emerald italic">backed by craft.</span>

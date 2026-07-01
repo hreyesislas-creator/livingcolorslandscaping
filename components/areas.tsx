@@ -2,9 +2,12 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { SectionHeading } from "./section-heading";
 import { brand } from "@/lib/content";
+
+const citySlug = (c: string) => c.toLowerCase().replace(/\s+/g, "-");
 
 export function Areas() {
   return (
@@ -16,35 +19,39 @@ export function Areas() {
               eyebrow="Areas served"
               title={
                 <>
-                  Designing across the
+                  Designing across
                   <br />
-                  <span className="text-gradient-emerald italic">Phoenix Valley.</span>
+                  <span className="text-gradient-emerald italic">Greater Los Angeles.</span>
                 </>
               }
-              description="From historic Arcadia to estate properties in Paradise Valley — we've earned a reputation in every neighborhood we touch."
+              description="From the coastal bluffs of Malibu and the Palisades to the historic estates of Pasadena and San Marino — we've earned a reputation in every neighborhood we touch."
             />
 
             <div className="mt-10 flex flex-wrap gap-2">
               {brand.cities.map((c, i) => (
-                <motion.span
+                <motion.div
                   key={c}
                   initial={{ opacity: 0, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.35, delay: i * 0.03 }}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-cream-50/85"
                 >
-                  <MapPin className="h-3.5 w-3.5 text-moss-300" />
-                  {c}
-                </motion.span>
+                  <Link
+                    href={`/service-areas/${citySlug(c)}`}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-cream-50/85 transition hover:border-moss-400/40 hover:text-cream-50"
+                  >
+                    <MapPin className="h-3.5 w-3.5 text-moss-300" />
+                    {c}
+                  </Link>
+                </motion.div>
               ))}
             </div>
 
             <p className="mt-8 text-sm text-cream-50/55">
               Not seeing your city? We still might cover it —{" "}
-              <a href="#quote" className="text-moss-300 underline-offset-4 hover:underline">
+              <Link href="/quote" className="text-moss-300 underline-offset-4 hover:underline">
                 start your quote
-              </a>{" "}
+              </Link>{" "}
               and we&apos;ll confirm immediately.
             </p>
           </div>
@@ -71,10 +78,10 @@ export function Areas() {
                   Featured neighborhood
                 </p>
                 <p className="font-display mt-3 text-2xl font-light text-cream-50">
-                  Paradise Valley
+                  Beverly Hills
                 </p>
                 <p className="mt-1 text-sm text-cream-50/65">
-                  120+ estate transformations completed
+                  Signature estate landscapes across the Westside
                 </p>
               </div>
             </div>

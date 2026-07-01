@@ -25,7 +25,7 @@ export function FinalCta() {
         >
           <Image
             src="/images/final-cta/final-cta.jpg"
-            alt=""
+            alt="Luxury landscaped backyard at dusk in Los Angeles"
             fill
             sizes="100vw"
             className="object-cover"

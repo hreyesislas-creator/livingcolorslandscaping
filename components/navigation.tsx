@@ -8,11 +8,11 @@ import { cn } from "@/lib/cn";
 import { brand } from "@/lib/content";
 
 const links = [
-  { href: "#services", label: "Services" },
-  { href: "#work", label: "Work" },
-  { href: "#process", label: "Process" },
-  { href: "#areas", label: "Areas" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/services", label: "Services" },
+  { href: "/service-areas", label: "Areas Served" },
+  { href: "/#work", label: "Work" },
+  { href: "/#process", label: "Process" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 export function Navigation() {
@@ -62,13 +62,13 @@ export function Navigation() {
 
           <nav className="hidden items-center gap-1 lg:flex">
             {links.map((l) => (
-              <a
+              <Link
                 key={l.href}
                 href={l.href}
                 className="rounded-full px-4 py-2 text-sm text-cream-50/80 transition hover:bg-white/5 hover:text-cream-50"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -80,12 +80,12 @@ export function Navigation() {
               <Phone className="h-3.5 w-3.5" />
               {brand.phone}
             </a>
-            <a
-              href="#quote"
+            <Link
+              href="/quote"
               className="hidden rounded-full bg-cream-50 px-5 py-2.5 text-sm font-medium text-ink-900 shadow-lg shadow-cream-50/10 transition hover:bg-cream-100 sm:inline-flex"
             >
               Start your quote
-            </a>
+            </Link>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -110,22 +110,22 @@ export function Navigation() {
             <div className="glass-strong rounded-2xl p-4">
               <nav className="flex flex-col gap-1">
                 {links.map((l) => (
-                  <a
+                  <Link
                     key={l.href}
                     href={l.href}
                     onClick={() => setOpen(false)}
                     className="rounded-xl px-4 py-3 text-base text-cream-50/90 transition hover:bg-white/5"
                   >
                     {l.label}
-                  </a>
+                  </Link>
                 ))}
-                <a
-                  href="#quote"
+                <Link
+                  href="/quote"
                   onClick={() => setOpen(false)}
                   className="mt-2 rounded-xl bg-cream-50 px-5 py-3 text-center text-sm font-medium text-ink-900"
                 >
                   Start your quote
-                </a>
+                </Link>
               </nav>
             </div>
           </motion.div>

@@ -23,8 +23,8 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-5 text-sm leading-relaxed text-cream-50/60">
-              Designing and building luxury outdoor environments across the
-              Valley. Licensed, bonded and insured.
+              Designing and building luxury outdoor environments across Greater
+              Los Angeles. Licensed, bonded and insured.
             </p>
             <div className="mt-6 flex items-center gap-3">
               <a
@@ -49,24 +49,24 @@ export function Footer() {
               Services
             </p>
             <ul className="mt-5 space-y-3 text-sm text-cream-50/70">
-              <li><a href="#services" className="hover:text-cream-50">Landscape Design</a></li>
-              <li><a href="#services" className="hover:text-cream-50">Artificial Turf</a></li>
-              <li><a href="#services" className="hover:text-cream-50">Pavers & Hardscape</a></li>
-              <li><a href="#services" className="hover:text-cream-50">Outdoor Lighting</a></li>
-              <li><a href="#services" className="hover:text-cream-50">Maintenance</a></li>
+              <li><Link href="/services/landscape-design" className="hover:text-cream-50">Landscape Design</Link></li>
+              <li><Link href="/services/artificial-turf" className="hover:text-cream-50">Artificial Turf</Link></li>
+              <li><Link href="/services/pavers" className="hover:text-cream-50">Pavers</Link></li>
+              <li><Link href="/services/outdoor-lighting" className="hover:text-cream-50">Outdoor Lighting</Link></li>
+              <li><Link href="/services" className="hover:text-cream-50">All services →</Link></li>
             </ul>
           </div>
 
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-moss-300/80">
-              Company
+              Areas served
             </p>
             <ul className="mt-5 space-y-3 text-sm text-cream-50/70">
-              <li><a href="#work" className="hover:text-cream-50">Portfolio</a></li>
-              <li><a href="#process" className="hover:text-cream-50">Process</a></li>
-              <li><a href="#areas" className="hover:text-cream-50">Areas served</a></li>
-              <li><a href="#faq" className="hover:text-cream-50">FAQ</a></li>
-              <li><a href="#quote" className="hover:text-cream-50">Get a quote</a></li>
+              <li><Link href="/service-areas/beverly-hills" className="hover:text-cream-50">Beverly Hills</Link></li>
+              <li><Link href="/service-areas/pacific-palisades" className="hover:text-cream-50">Pacific Palisades</Link></li>
+              <li><Link href="/service-areas/malibu" className="hover:text-cream-50">Malibu</Link></li>
+              <li><Link href="/service-areas/pasadena" className="hover:text-cream-50">Pasadena</Link></li>
+              <li><Link href="/service-areas" className="hover:text-cream-50">All areas →</Link></li>
             </ul>
           </div>
 
@@ -85,14 +85,19 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 text-moss-300" />
-                <span>Serving the Phoenix Valley</span>
+                <span>Serving Greater Los Angeles</span>
+              </li>
+              <li>
+                <Link href="/quote" className="text-moss-300 underline-offset-4 hover:underline">
+                  Start your Smart Quote →
+                </Link>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-14 flex flex-col-reverse items-center justify-between gap-4 border-t border-white/5 pt-8 text-xs text-cream-50/50 sm:flex-row">
-          <p>© {new Date().getFullYear()} {brand.name}. All rights reserved. ROC# 000000</p>
+          <p>© {new Date().getFullYear()} {brand.name}. All rights reserved. Licensed &amp; insured.</p>
           <div className="flex items-center gap-5">
             <a href="#" className="hover:text-cream-50/80">Privacy</a>
             <a href="#" className="hover:text-cream-50/80">Terms</a>

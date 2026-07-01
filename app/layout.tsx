@@ -3,7 +3,13 @@ import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { brand } from "@/lib/content";
+import { JsonLd } from "@/components/seo/json-ld";
+import {
+  siteConfig,
+  buildMetadata,
+  organizationSchema,
+  localBusinessSchema,
+} from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,15 +25,13 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: `${brand.name} — Premium Outdoor Transformations`,
-  description:
-    "Luxury landscape design, hardscape, turf, irrigation and outdoor living projects with a fast, modern quote experience.",
-  openGraph: {
-    title: `${brand.name} — Premium Outdoor Transformations`,
+  metadataBase: new URL(siteConfig.url),
+  ...buildMetadata({
+    title: `${siteConfig.name} — Premium Los Angeles Landscaping`,
     description:
-      "Luxury landscape design, hardscape, turf, irrigation and outdoor living projects.",
-    type: "website",
-  },
+      "Luxury landscape design, hardscape, turf, irrigation and outdoor living across Greater Los Angeles — planned through a fast, guided Smart Quote.",
+    path: "/",
+  }),
 };
 
 export const viewport: Viewport = {
@@ -44,6 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <body className="min-h-screen bg-ink-950 text-cream-50 antialiased">
+        <JsonLd data={[organizationSchema(), localBusinessSchema()]} />
         <Navigation />
         <main className="relative overflow-hidden">{children}</main>
         <Footer />

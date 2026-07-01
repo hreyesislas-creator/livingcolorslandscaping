@@ -124,7 +124,7 @@ export function Hero() {
             <span className="hidden h-1 w-1 rounded-full bg-cream-50/30 sm:block" />
             <span>Licensed · Bonded · Insured</span>
             <span className="hidden h-1 w-1 rounded-full bg-cream-50/30 sm:block" />
-            <span>18+ years across the Valley</span>
+            <span>18+ years across Los Angeles</span>
           </motion.div>
         </div>
 

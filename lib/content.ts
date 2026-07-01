@@ -4,18 +4,21 @@ export const brand = {
   phone: "(323) 854-5237",
   email: "hello@livingcolorslandscape.com",
   cities: [
-    "Scottsdale",
-    "Paradise Valley",
-    "Phoenix",
-    "Arcadia",
-    "Mesa",
-    "Chandler",
-    "Gilbert",
-    "Tempe",
-    "Cave Creek",
-    "Fountain Hills",
-    "Carefree",
-    "North Phoenix",
+    "Beverly Hills",
+    "Bel Air",
+    "Brentwood",
+    "Pacific Palisades",
+    "Malibu",
+    "Santa Monica",
+    "Manhattan Beach",
+    "Palos Verdes Estates",
+    "Rancho Palos Verdes",
+    "Calabasas",
+    "Hidden Hills",
+    "Thousand Oaks",
+    "Westlake Village",
+    "Pasadena",
+    "San Marino",
   ],
   stats: [
     { value: "18+", label: "Years designing" },
@@ -103,8 +106,8 @@ export interface TransformationProject {
 export const beforeAfter: TransformationProject[] = [
   {
     slug: "project-01",
-    title: "Paradise Valley Estate",
-    location: "Paradise Valley, AZ",
+    title: "Beverly Hills Estate",
+    location: "Beverly Hills, CA",
     services: [
       "Pool surround",
       "Premium turf",
@@ -116,8 +119,8 @@ export const beforeAfter: TransformationProject[] = [
   },
   {
     slug: "project-02",
-    title: "Modern Arcadia Frontyard",
-    location: "Arcadia, AZ",
+    title: "Modern Palisades Frontyard",
+    location: "Pacific Palisades, CA",
     services: [
       "Desert design",
       "CorTen edging",
@@ -129,8 +132,8 @@ export const beforeAfter: TransformationProject[] = [
   },
   {
     slug: "project-03",
-    title: "Scottsdale Resort Backyard",
-    location: "Scottsdale, AZ",
+    title: "Malibu Resort Backyard",
+    location: "Malibu, CA",
     services: [
       "Travertine pavers",
       "Putting green",
@@ -178,25 +181,25 @@ export const testimonials = [
     quote:
       "It feels like a private resort. Every detail of the design and the install was a level above what we expected.",
     name: "Sarah & Mark T.",
-    location: "Paradise Valley",
+    location: "Beverly Hills",
   },
   {
     quote:
       "From the first quote screen to the final walkthrough, this is the most organized company we've ever worked with.",
     name: "Daniel R.",
-    location: "Scottsdale",
+    location: "Pacific Palisades",
   },
   {
     quote:
       "Our front yard is now the most photographed house on the street. Worth every dollar.",
     name: "Priya M.",
-    location: "Arcadia",
+    location: "San Marino",
   },
   {
     quote:
       "They turned a dirt lot into something cinematic. The lighting at night is unreal.",
     name: "James K.",
-    location: "Cave Creek",
+    location: "Calabasas",
   },
 ];
 
@@ -207,7 +210,7 @@ export const faqs = [
   },
   {
     q: "Do you handle both residential and commercial work?",
-    a: "Yes. We work with private homes, HOAs, multi-family communities and select commercial properties across the Valley.",
+    a: "Yes. We work with private homes, HOAs, multi-family communities and select commercial properties across Greater Los Angeles.",
   },
   {
     q: "Are you licensed and insured?",
