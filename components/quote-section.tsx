@@ -7,7 +7,7 @@ import { QuoteWizard } from "./quote-wizard";
 const features = [
   { icon: Sparkles, label: "Guided intake" },
   { icon: Compass, label: "Tailored design plan" },
-  { icon: Timer, label: "Reply < 24 hrs" },
+  { icon: Timer, label: "Response in 1 Business Day" },
   { icon: ShieldCheck, label: "Specialist review" },
 ];
 

@@ -9,6 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -49,6 +50,7 @@ interface OptionDef {
   label: string;
   description?: string;
   icon: React.ComponentType<{ className?: string }>;
+  image?: string;
 }
 
 type Step =
@@ -92,14 +94,13 @@ const steps: Step[] = [
     question: "What type of outdoor project are you planning?",
     helper: "Pick one or as many as apply.",
     options: [
-      { id: "design", label: "Landscape Design", icon: Compass },
-      { id: "turf", label: "Artificial Turf", icon: Leaf },
-      { id: "pavers", label: "Pavers", icon: Square },
-      { id: "hardscape", label: "Hardscape", icon: Hammer },
-      { id: "irrigation", label: "Irrigation", icon: Droplets },
-      { id: "lighting", label: "Outdoor Lighting", icon: Sun },
-      { id: "living", label: "Outdoor Living", icon: Home },
-      { id: "other", label: "Other / Custom", icon: Sparkles },
+      { id: "design", label: "Landscape Design", icon: Compass, image: "/images/services/landscape-design.jpg" },
+      { id: "turf", label: "Artificial Turf", icon: Leaf, image: "/images/services/artificial-turf.jpg" },
+      { id: "pavers", label: "Pavers", icon: Square, image: "/images/services/pavers.jpg" },
+      { id: "hardscape", label: "Hardscape", icon: Hammer, image: "/images/services/hardscape.jpg" },
+      { id: "irrigation", label: "Irrigation", icon: Droplets, image: "/images/services/smart-irrigation.jpg" },
+      { id: "lighting", label: "Outdoor Lighting", icon: Sun, image: "/images/services/outdoor-lighting.jpg" },
+      { id: "other", label: "Other / Custom", icon: Sparkles, image: "/images/services/custom-projects.jpg" },
     ],
   },
   {
@@ -136,7 +137,7 @@ const steps: Step[] = [
     key: "photos",
     eyebrow: "Step 04 · Inspiration",
     question: "Upload inspiration or project photos.",
-    helper: "Drag & drop or browse. Totally optional — but it helps us design faster.",
+    helper: "Drag & drop or browse. Totally optional — but it helps create a more satisfied and personalized project.",
   },
   {
     type: "choice",
@@ -145,8 +146,8 @@ const steps: Step[] = [
     question: "When are you planning to start?",
     options: [
       { id: "asap", label: "ASAP", description: "Within 30 days", icon: Sparkles },
-      { id: "soon", label: "1–3 months", description: "Planning to start soon", icon: Clock },
-      { id: "planning", label: "Planning phase", description: "3–6 months out", icon: Calendar },
+      { id: "soon", label: "1–6 months", description: "Planning to start soon", icon: Clock },
+      { id: "planning", label: "7–12 months", description: "Planning phase", icon: Calendar },
       { id: "exploring", label: "Just exploring", description: "Gathering ideas", icon: Compass },
     ],
   },
@@ -157,12 +158,13 @@ const steps: Step[] = [
     question: "What investment range are you considering?",
     helper: "Helps us match the right team — final pricing is always custom.",
     options: [
-      { id: "b1", label: "Under $10k", icon: Wallet },
-      { id: "b2", label: "$10k – $25k", icon: Wallet },
-      { id: "b3", label: "$25k – $75k", icon: Wallet },
-      { id: "b4", label: "$75k – $200k", icon: Wallet },
-      { id: "b5", label: "$200k+", icon: Trophy },
-      { id: "b6", label: "Not sure yet", icon: Sparkles },
+      { id: "b1", label: "Under $5k", icon: Wallet },
+      { id: "b2", label: "$5k – $10k", icon: Wallet },
+      { id: "b3", label: "$10k – $25k", icon: Wallet },
+      { id: "b4", label: "$25k – $75k", icon: Wallet },
+      { id: "b5", label: "$75k – $100k", icon: Wallet },
+      { id: "b6", label: "$100k+", icon: Trophy },
+      { id: "b7", label: "Not sure yet", icon: Sparkles },
     ],
   },
   {
@@ -345,7 +347,12 @@ export function QuoteWizard() {
     if (step.type === "qualification") return true;
     if (step.type === "contact") {
       const c = answers.contact;
-      return c.name.trim().length > 1 && /\S+@\S+\.\S+/.test(c.email);
+      return (
+        c.name.trim().length > 1 &&
+        /\S+@\S+\.\S+/.test(c.email) &&
+        c.phone.trim().length > 0 &&
+        c.zip.trim().length > 0
+      );
     }
     return false;
   }, [step, answers]);
@@ -558,29 +565,52 @@ function ChoiceGrid({
                 : "border-white/8 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.04]",
             )}
           >
-            <div className="flex items-start justify-between gap-3">
-              <div
-                className={cn(
-                  "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition",
-                  active
-                    ? "bg-moss-500/25 text-moss-200"
-                    : "bg-white/5 text-cream-50/70 group-hover:bg-white/10",
-                )}
-              >
-                <opt.icon className="h-5 w-5" />
+            {opt.image ? (
+              <div className="relative mb-4 aspect-[16/10] overflow-hidden rounded-xl border border-white/8">
+                <Image
+                  src={opt.image}
+                  alt={opt.label}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink-950/55 via-transparent to-transparent" />
+                <div
+                  className={cn(
+                    "absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full border backdrop-blur transition",
+                    active
+                      ? "border-moss-400 bg-moss-500 text-ink-900"
+                      : "border-white/25 bg-ink-950/50 text-transparent",
+                  )}
+                >
+                  <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                </div>
               </div>
-              <div
-                className={cn(
-                  "flex h-6 w-6 items-center justify-center rounded-full border transition",
-                  active
-                    ? "border-moss-400 bg-moss-500 text-ink-900"
-                    : "border-white/15 bg-transparent text-transparent",
-                )}
-              >
-                <Check className="h-3.5 w-3.5" strokeWidth={3} />
+            ) : (
+              <div className="flex items-start justify-between gap-3">
+                <div
+                  className={cn(
+                    "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition",
+                    active
+                      ? "bg-moss-500/25 text-moss-200"
+                      : "bg-white/5 text-cream-50/70 group-hover:bg-white/10",
+                  )}
+                >
+                  <opt.icon className="h-5 w-5" />
+                </div>
+                <div
+                  className={cn(
+                    "flex h-6 w-6 items-center justify-center rounded-full border transition",
+                    active
+                      ? "border-moss-400 bg-moss-500 text-ink-900"
+                      : "border-white/15 bg-transparent text-transparent",
+                  )}
+                >
+                  <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                </div>
               </div>
-            </div>
-            <div className="mt-5">
+            )}
+            <div className={opt.image ? "" : "mt-5"}>
               <p className="text-base font-medium text-cream-50">{opt.label}</p>
               {opt.description && (
                 <p className="mt-1 text-xs text-cream-50/55">{opt.description}</p>
@@ -778,7 +808,7 @@ function QualificationCard({ answers }: { answers: Answers }) {
       >
         <span className="inline-flex items-center gap-1.5">
           <Check className="h-3.5 w-3.5 text-moss-300" />
-          Specialist reply &lt; 24 hrs
+          Specialist reply &lt; 1 Business Day
         </span>
         <span className="inline-flex items-center gap-1.5">
           <Check className="h-3.5 w-3.5 text-moss-300" />
@@ -828,7 +858,8 @@ function ContactForm({
         type="tel"
         value={value.phone}
         onChange={(v) => set("phone", v)}
-        placeholder="(323) 854-5237"
+        placeholder="(000) 000-0000"
+        required
       />
       <Field
         icon={MapPin}
@@ -836,6 +867,7 @@ function ContactForm({
         value={value.zip}
         onChange={(v) => set("zip", v)}
         placeholder="85254"
+        required
       />
       <div className="sm:col-span-2">
         <label className="block text-xs font-medium uppercase tracking-[0.16em] text-cream-50/55">
@@ -1147,6 +1179,16 @@ function SuccessScreen({
           review everything personally and reach out within{" "}
           <span className="text-cream-50">one business day</span> with next
           steps.
+        </p>
+        <p className="mt-4 text-pretty text-sm leading-relaxed text-cream-50/60 sm:text-base">
+          If your timeline is urgent, feel free to call us directly at{" "}
+          <a
+            href="tel:+13102669292"
+            className="text-cream-50 underline underline-offset-2"
+          >
+            (310) 266-9292
+          </a>
+          .
         </p>
 
         <div className="mt-10 grid gap-3 text-left sm:grid-cols-3">
