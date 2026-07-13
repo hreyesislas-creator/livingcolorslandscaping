@@ -1,7 +1,7 @@
 export const brand = {
   name: "Living Colors Landscape",
   tagline: "Premium outdoor transformations.",
-  phone: "(323) 854-5237",
+  phone: "(310) 266-9292",
   email: "hello@livingcolorlandscapeinc.com",
   cities: [
     "Beverly Hills",
@@ -119,7 +119,7 @@ export const beforeAfter: TransformationProject[] = [
   },
   {
     slug: "project-02",
-    title: "Beverly Hills Estate",
+    title: "Beverly Hills Modern Residence",
     location: "Beverly Hills, CA",
     services: [
       "Desert design",

@@ -17,8 +17,8 @@ export const siteConfig = {
   ).replace(/\/$/, ""),
   description:
     "Premium landscape design, build and maintenance for the most discerning homes across Greater Los Angeles.",
-  phone: "(323) 854-5237",
-  phoneHref: "tel:+13238545237",
+  phone: "(310) 266-9292",
+  phoneHref: "tel:+13102669292",
   email: "hello@livingcolorlandscapeinc.com",
   region: "Los Angeles",
   areaServed: "Greater Los Angeles",

@@ -449,8 +449,8 @@ export function QuoteWizard() {
             <X className="mt-0.5 h-4 w-4 shrink-0" />
             <span>
               {error} If it keeps happening, call us at{" "}
-              <a href="tel:+13238545237" className="underline underline-offset-2">
-                (323) 854-5237
+              <a href="tel:+13102669292" className="underline underline-offset-2">
+                (310) 266-9292
               </a>
               .
             </span>
@@ -1195,7 +1195,7 @@ function SuccessScreen({
           {[
             { t: "Now", b: "Specialist reviewing your project" },
             { t: "Today", b: "Quote turnaround prep" },
-            { t: "Within 24h", b: "Personal response" },
+            { t: "Within 1 Business Day", b: "Personal response" },
           ].map((s) => (
             <div
               key={s.t}
